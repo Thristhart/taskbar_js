@@ -36,6 +36,8 @@ var Taskbar = {
 		
 		taskbar.getElementsByClassName("taskbar_button_list")[0].appendChild(button);
 		
+		Taskbar.scaleAsNeeded(taskbar);
+		
 		return button;
 	},
 	
@@ -49,6 +51,7 @@ var Taskbar = {
 		if(!button) // can't remove what isn't there
 			return;
 		taskbar.getElementsByClassName("taskbar_button_list")[0].removeChild(button);
+		Taskbar.scaleAsNeeded(taskbar);
 	},
 	// Returns the taskbar's total width in pixels
 	// Params:
@@ -83,11 +86,12 @@ var Taskbar = {
 	scaleAsNeeded: function(taskbar) {
 		var taskbar_width = this.getWidth(taskbar);
 		var total_button_width = this.getTotalWidth(taskbar);
-		var inner_table = taskbar.getElementsByClassName("taskbar_button_table");
+		var inner_table = taskbar.getElementsByClassName("taskbar_button_table")[0];
 		if(taskbar_width < total_button_width) {
 			inner_table.style.width = "100%";
 		}
-		inner_table.style.width = total_button_width;
+		else
+			inner_table.style.width = total_button_width;
 	},
 	
 	// Search for a button
