@@ -9,6 +9,7 @@ var Taskbar = {
 		
 		var taskbar_button_list = document.createElement("ul");
 		taskbar_button_list.className = "taskbar_button_list"
+		taskbar_button_list.style.display = "table-row";
 		
 		taskbar_button_table.appendChild(taskbar_button_list);
 		taskbar.appendChild(taskbar_button_table);
@@ -31,6 +32,7 @@ var Taskbar = {
 			button = elem;
 		}
 		button.className += " taskbar_button"; // TODO: Check if the button has this class already
+		button.style.display = "table-cell";
 		
 		taskbar.getElementsByClassName("taskbar_button_list")[0].appendChild(button);
 		
