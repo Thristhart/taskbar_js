@@ -74,6 +74,20 @@ var Taskbar = {
 		return max_width * buttons.length;
 	},
 	
+	// Scale the inner table so that the buttons will be at max_width rather than across the full width of the taskbar
+	// unless the total width would be large enough to escape the taskbar
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
+	scaleAsNeeded: function(taskbar) {
+		var taskbar_width = this.getWidth(taskbar);
+		var total_button_width = this.getTotalWidth(taskbar);
+		var inner_table = taskbar.getElementsByClassName("taskbar_button_table");
+		if(taskbar_width < total_button_width) {
+			inner_table.style.width = "100%";
+		}
+		inner_table.style.width = total_button_width;
+	},
+	
 	// Search for a button
 	// Params:
 	//		- taskbar, a taskbar built by Taskbar.build()
