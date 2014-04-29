@@ -1,4 +1,5 @@
 var Taskbar = {
+	// Generate a DOM element with the required classes and hierarchy
 	build: function() {
 		var taskbar = document.createElement("div");
 		taskbar.className = "taskbar";
@@ -14,6 +15,12 @@ var Taskbar = {
 		return taskbar;
 	},
 	
+	// Add a button to the taskbar
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
+	//		- button
+	//			when String, creates a button with the string as the innerHTML, and appends the element to the taskbar.
+	//			when DOM element, simply appends the element to the taskbar.
 	addButton: function(taskbar, button) {
 		if(!button) {
 			button = document.createElement("li");
@@ -25,11 +32,15 @@ var Taskbar = {
 		}
 		button.className += " taskbar_button"; // TODO: Check if the button has this class already
 		
-		taskbar.getElementsWithClassName("taskbar_button_list")[0].appendChild(button);
+		taskbar.getElementsByClassName("taskbar_button_list")[0].appendChild(button);
 		
 		return button;
 	},
 	
+	// Remove a button from the taskbar
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
+	//		- button, which is passed to #getButton to find the button in question
 	removeButton: function(taskbar, button) {
 		button = this.getButton(taskbar, button);
 		
@@ -39,6 +50,12 @@ var Taskbar = {
 		taskbar.removeChild(button);
 	},
 	
+	// Search for a button
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
+	//		- button
+	//			when String, searches for a button with the string as innerHTML
+	//			when DOM element, simply returns the element passed
 	getButton: function(taskbar, button) {
 		// if it's an element and it's a button they've already got it
 		if(button.nodeName && button.className.indexOf("taskbar_button") != 0)
@@ -55,6 +72,9 @@ var Taskbar = {
 		return null; // we can't find the button!
 	},
 	
+	// Return an array of the buttons in the taskbar.
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
 	getTaskbarButtons: function(taskbar) {
 		return taskbar.getElementsWithClassName("taskbar_button");
 	}
