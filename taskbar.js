@@ -48,6 +48,31 @@ var Taskbar = {
 			return;
 		taskbar.getElementsByClassName("taskbar_button_list")[0].removeChild(button);
 	},
+	// Returns the taskbar's total width in pixels
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
+	getWidth: function(taskbar) {
+		return taskbar.offsetWidth;
+	},
+	// Answers the question: If all the buttons in the taskbar had width equal to their max-width, what would the total width of the buttons be?
+	// Params:
+	//		- taskbar, a taskbar built by Taskbar.build()
+	getTotalWidth: function(taskbar) {
+		var buttons = this.getTaskbarButtons(taskbar);
+		if(buttons.length == 0) {
+			return 0;
+		}
+		// We use an arbitrary button's width because we don't support different-width buttons
+		var first_button = buttons[0];
+		var style = window.getComputedStyle(first_button);
+		var max_width = parseInt(style.maxWidth);
+		
+		if(isNaN(max_width)) {
+			max_width = 0;
+		}
+		
+		return max_width * buttons.length;
+	},
 	
 	// Search for a button
 	// Params:
