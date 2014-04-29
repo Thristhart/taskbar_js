@@ -46,8 +46,7 @@ var Taskbar = {
 		
 		if(!button) // can't remove what isn't there
 			return;
-		
-		taskbar.removeChild(button);
+		taskbar.getElementsByClassName("taskbar_button_list")[0].removeChild(button);
 	},
 	
 	// Search for a button
@@ -76,7 +75,7 @@ var Taskbar = {
 	// Params:
 	//		- taskbar, a taskbar built by Taskbar.build()
 	getTaskbarButtons: function(taskbar) {
-		return taskbar.getElementsWithClassName("taskbar_button");
+		return taskbar.getElementsByClassName("taskbar_button");
 	}
 	
 	
